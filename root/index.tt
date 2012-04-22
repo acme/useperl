@@ -56,8 +56,7 @@ data-target=".nav-collapse">
       <h2>[% count_stories | html | comma %] stories</h2>
 <ul>
 [% FOREACH story IN stories %]
-<li><a href="[% c.uri_for('article.pl', { sid => story.sid}) %]">[% story.title
-    | html %] is [% story.tid %]</li>
+<li><a href="[% c.uri_for('article.pl', { sid => story.sid}) %]">[% story.title | html %]</li>
 [% END %]
 </ul>
     </div> <!-- /container -->
