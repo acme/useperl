@@ -29,6 +29,7 @@ The root page (/)
 sub index : Path : Args(0) {
     my ( $self, $c ) = @_;
     my $db_model = $c->model('DB');
+
     my $count_stories
         = $c->model('DB::Story')->count( { -not => { tid => 41 } } );
     $c->stash->{count_stories} = $count_stories;
@@ -40,6 +41,7 @@ sub index : Path : Args(0) {
         }
     );
     $c->stash->{stories} = \@stories;
+
     my $count_users = $c->model('DB::User')->count( {} );
     $c->stash->{count_users} = $count_users;
     my @users = $c->model('DB::User')->search(
@@ -50,6 +52,17 @@ sub index : Path : Args(0) {
         }
     );
     $c->stash->{users} = \@users;
+
+    my $count_journals = $c->model('DB::Journal')->count( {} );
+    $c->stash->{count_journals} = $count_journals;
+    my @journals = $c->model('DB::Journal')->search(
+        {},
+        {   page     => 1,
+            rows     => 20,
+            order_by => { -desc => 'date' }
+        }
+    );
+    $c->stash->{journals} = \@journals;
 }
 
 =head2 default

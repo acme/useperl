@@ -74,6 +74,15 @@ data-target=".nav-collapse">
 </ul>
 </div> <!-- span4 -->
 
+<div class="span4">
+<h2>[% count_journals | html | comma %] journals</h2>
+<ul>
+[% FOREACH journal IN journals %]
+<li><a href="[% c.uri_for('user.pl', { sid => story.sid}) %]">[% journal.description | html %]</a></li>
+[% END %]
+</ul>
+</div> <!-- span4 -->
+
 </div> <!-- row -->
     </div> <!-- /container -->
 
