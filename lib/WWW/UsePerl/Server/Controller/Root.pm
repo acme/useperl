@@ -57,7 +57,8 @@ sub index : Path : Args(0) {
     $c->stash->{count_journals} = $count_journals;
     my @journals = $c->model('DB::Journal')->search(
         {},
-        {   page     => 1,
+        {   prefetch => 'user',
+            page     => 1,
             rows     => 20,
             order_by => { -desc => 'date' }
         }
