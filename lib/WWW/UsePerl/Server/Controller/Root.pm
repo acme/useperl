@@ -40,6 +40,16 @@ sub index : Path : Args(0) {
         }
     );
     $c->stash->{stories} = \@stories;
+    my $count_users = $c->model('DB::User')->count( {} );
+    $c->stash->{count_users} = $count_users;
+    my @users = $c->model('DB::User')->search(
+        {},
+        {   page     => 1,
+            rows     => 20,
+            order_by => { -desc => 'journal_last_entry_date' }
+        }
+    );
+    $c->stash->{users} = \@users;
 }
 
 =head2 default

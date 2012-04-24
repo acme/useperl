@@ -51,14 +51,30 @@ data-target=".nav-collapse">
     </div>
 
     <div class="container">
+
 [% USE Comma %]
-      <h1>use.perl.org</h1>
-      <h2>[% count_stories | html | comma %] stories</h2>
+
+<div class="row">
+
+<div class="span4">
+<h2>[% count_stories | html | comma %] stories</h2>
 <ul>
 [% FOREACH story IN stories %]
-<li><a href="[% c.uri_for('article.pl', { sid => story.sid}) %]">[% story.title | html %]</li>
+<li><a href="[% c.uri_for('article.pl', { sid => story.sid}) %]">[% story.title | html %]</a></li>
 [% END %]
 </ul>
+</div> <!-- span4 -->
+
+<div class="span4">
+<h2>[% count_users | html | comma %] users</h2>
+<ul>
+[% FOREACH user IN users %]
+<li><a href="[% c.uri_for('user.pl', { sid => story.sid}) %]">[% user.nickname | html %]</a></li>
+[% END %]
+</ul>
+</div> <!-- span4 -->
+
+</div> <!-- row -->
     </div> <!-- /container -->
 
     <!-- Le javascript
