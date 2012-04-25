@@ -66,6 +66,22 @@ sub index : Path : Args(0) {
     $c->stash->{journals} = \@journals;
 }
 
+=head2 journal entry
+
+A user's journal entry
+
+=cut
+
+sub journal : Regex('^~(\w+)/journal/(\d+)$') {
+    my ( $self,     $c )          = @_;
+    my ( $username, $journal_id ) = @{ $c->req->captures };
+    my $db_model = $c->model('DB');
+    my $journal  = $c->model('DB::Journal')->find($journal_id);
+    $c->stash->{journal}    = $journal;
+    $c->stash->{username}   = $username;
+    $c->stash->{journal_id} = $journal_id;
+}
+
 =head2 default
 
 Standard 404 error page

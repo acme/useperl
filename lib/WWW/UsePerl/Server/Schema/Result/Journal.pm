@@ -98,6 +98,16 @@ __PACKAGE__->table("journals");
   extra: {unsigned => 1}
   is_nullable: 0
 
+=head2 article
+
+  data_type: 'text'
+  is_nullable: 0
+
+=head2 introtext
+
+  data_type: 'text'
+  is_nullable: 0
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -163,12 +173,16 @@ __PACKAGE__->add_columns(
     extra => { unsigned => 1 },
     is_nullable => 0,
   },
+  "article",
+  { data_type => "text", is_nullable => 0 },
+  "introtext",
+  { data_type => "text", is_nullable => 0 },
 );
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-24 20:42:34
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:yH1BXaoRTSAyBgl2qWoYxw
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-25 20:55:29
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:69IdsQzoRgVuahqZ0Zs7xA
 
 __PACKAGE__->belongs_to('user', 'WWW::UsePerl::Server::Schema::Result::User', 'uid');
 
