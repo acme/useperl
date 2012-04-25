@@ -186,6 +186,15 @@ __PACKAGE__->set_primary_key("id");
 
 __PACKAGE__->belongs_to('user', 'WWW::UsePerl::Server::Schema::Result::User', 'uid');
 
+sub article_html {
+    my $self = shift;
+    my $article = $self->article;
+    $article =~ s{\r?\n\r?\n}{<br/><br/>}g unless $article =~ /<p>/;
+    $article =~ s{<ecode>}{<pre>}g;
+    $article =~ s{</ecode>}{</pre>}g;
+    return $article;
+}
+
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
 1;

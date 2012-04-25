@@ -62,7 +62,7 @@ data-target=".nav-collapse">
 
 
 <div class="span8">
-<p>[% journal.article %]</p>
+<p>[% journal.article_html %]</p>
 </div> <!-- /span8 -->
 
 </div> <!-- row -->
