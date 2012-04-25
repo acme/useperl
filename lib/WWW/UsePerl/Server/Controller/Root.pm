@@ -74,12 +74,15 @@ A user's journal entry
 
 sub journal : Regex('^~(\w+)/journal/(\d+)$') {
     my ( $self,     $c )          = @_;
-    my ( $username, $journal_id ) = @{ $c->req->captures };
-    my $db_model = $c->model('DB');
-    my $journal  = $c->model('DB::Journal')->find($journal_id);
-    $c->stash->{journal}    = $journal;
-    $c->stash->{username}   = $username;
-    $c->stash->{journal_id} = $journal_id;
+    my ( $nickname, $journal_id ) = @{ $c->req->captures };
+    my $user = $c->model('DB::User')->single( { nickname => $nickname } )
+        || die "No user found for $nickname";
+    my $journal = $c->model('DB::Journal')->single(
+        {   id  => $journal_id,
+            uid => $user->uid
+        }
+    ) || die "Journal $journal_id not found for user $nickname";
+    $c->stash->{journal} = $journal;
 }
 
 =head2 default
