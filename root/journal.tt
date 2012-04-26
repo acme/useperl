@@ -1,3 +1,6 @@
+[% page.title = 'use.perl.org journal of ' _ journal.user.nickname _ ': ' _
+journal.description %]
+
 <div class="container">
 
 <div class="row">

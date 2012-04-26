@@ -1,3 +1,5 @@
+[% page.title = 'use.perl.org' %]
+
 <div class="container">
 
 [% USE Comma %]
