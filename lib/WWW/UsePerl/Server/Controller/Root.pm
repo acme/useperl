@@ -66,6 +66,20 @@ sub index : Path : Args(0) {
     $c->stash->{journals} = \@journals;
 }
 
+=head2 story entry
+
+A story entry
+
+=cut
+
+sub story : Regex('^article\.pl') {
+    my ( $self, $c ) = @_;
+    my ($sid) = $c->request->param('sid');
+    my $story = $c->model('DB::Story')->single( { sid => $sid } )
+        || die "Story $sid not found";
+    $c->stash->{story} = $story;
+}
+
 =head2 journal entry
 
 A user's journal entry

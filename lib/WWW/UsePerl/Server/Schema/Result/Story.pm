@@ -316,6 +316,25 @@ __PACKAGE__->add_unique_constraint("sid", ["sid"]);
 # Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-22 11:20:27
 # DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:UnOOZ8KMGhW/Dyf1b9yvhw
 
+__PACKAGE__->belongs_to('user', 'WWW::UsePerl::Server::Schema::Result::User', 'uid');
+
+sub introtext_html {
+    my $self = shift;
+    my $article = $self->introtext;
+    $article =~ s{\r?\n\r?\n}{<br/><br/>}g unless $article =~ /<p>/;
+    $article =~ s{<ecode>}{<pre>}g;
+    $article =~ s{</ecode>}{</pre>}g;
+    return $article;
+}
+
+sub bodytext_html {
+    my $self = shift;
+    my $article = $self->bodytext;
+    $article =~ s{\r?\n\r?\n}{<br/><br/>}g unless $article =~ /<p>/;
+    $article =~ s{<ecode>}{<pre>}g;
+    $article =~ s{</ecode>}{</pre>}g;
+    return $article;
+}
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;
