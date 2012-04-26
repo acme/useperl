@@ -8,6 +8,7 @@ use base 'Catalyst::View::TT';
 __PACKAGE__->config(
     TEMPLATE_EXTENSION => '.tt',
     render_die         => 1,
+    WRAPPER            => 'lib/wrapper.tt',
 );
 
 =head1 NAME
