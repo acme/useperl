@@ -75,7 +75,9 @@ A story entry
 sub story : Regex('^article\.pl') {
     my ( $self, $c ) = @_;
     my ($sid) = $c->request->param('sid');
-    my $story = $c->model('DB::Story')->single( { sid => $sid } )
+    my $story
+        = $c->model('DB::Story')
+        ->search( { sid => $sid }, { prefetch => 'user' } )->single
         || die "Story $sid not found";
     $c->stash->{story} = $story;
 }
@@ -113,6 +115,7 @@ sub journal : Regex('^~(\w+)/journal/(\d+)$') {
     my ( $nickname, $journal_id ) = @{ $c->req->captures };
     my $user = $c->model('DB::User')->single( { nickname => $nickname } )
         || die "No user found for $nickname";
+    $c->stash->{user} = $user;
     my $journal = $c->model('DB::Journal')->single(
         {   id  => $journal_id,
             uid => $user->uid,

@@ -1,4 +1,4 @@
-[% page.title = 'use.perl.org journal of ' _ journal.user.nickname _ ': ' _
+[% page.title = 'use.perl.org journal of ' _ user.nickname _ ': ' _
 journal.description %]
 
 <div class="container">
@@ -7,7 +7,7 @@ journal.description %]
 
 <div class="span4">
 <h2>[% journal.description | html  %]</h2>
-<h3><a href="[% c.uri_for('~' _ journal.user.nickname _ '/' ) %]">[% journal.user.nickname |
+<h3><a href="[% c.uri_for('~' _ user.nickname _ '/' ) %]">[% user.nickname |
         html %]</a> on [% journal.date | html %]</h3>
 </div> <!-- /span4 -->
 
