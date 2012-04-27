@@ -28,7 +28,8 @@
 <h2>[% count_journals | html | comma %] journals</h2>
 <ul>
 [% FOREACH journal IN journals %]
-<li><a href="[% c.uri_for('~' _ journal.user.nickname _ '/journal/' _ journal.id ) %]">[% journal.description | html %]</a></li>
+<li><a href="[% c.uri_for('~' _ journal.user.nickname _ '/journal/' _ journal.id )
+    %]">[% journal.user.nickname | html %]: [% journal.description | html %]</a></li>
 [% END %]
 </ul>
 </div> <!-- span4 -->
