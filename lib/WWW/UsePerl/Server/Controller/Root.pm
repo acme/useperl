@@ -60,7 +60,7 @@ sub index : Path : Args(0) {
         {   prefetch => 'user',
             page     => 1,
             rows     => 20,
-            order_by => { -desc => 'date' }
+            order_by => { -desc => 'date' },
         }
     );
     $c->stash->{journals} = \@journals;
@@ -80,6 +80,28 @@ sub story : Regex('^article\.pl') {
     $c->stash->{story} = $story;
 }
 
+=head2 user
+
+A user
+
+=cut
+
+sub user : Regex('^~(\w+)/?$') {
+    my ( $self, $c ) = @_;
+    my ($nickname) = @{ $c->req->captures };
+    my $user = $c->model('DB::User')->single( { nickname => $nickname } )
+        || die "No user found for $nickname";
+    $c->stash->{user} = $user;
+    my $journals = $c->model('DB::Journal')->search(
+        { uid => $user->uid },
+        {   page     => 1,
+            rows     => 20,
+            order_by => { -desc => 'date' },
+        }
+    );
+    $c->stash->{journals} = [ $journals->all ];
+}
+
 =head2 journal entry
 
 A user's journal entry
@@ -93,7 +115,7 @@ sub journal : Regex('^~(\w+)/journal/(\d+)$') {
         || die "No user found for $nickname";
     my $journal = $c->model('DB::Journal')->single(
         {   id  => $journal_id,
-            uid => $user->uid
+            uid => $user->uid,
         }
     ) || die "Journal $journal_id not found for user $nickname";
     $c->stash->{journal} = $journal;
