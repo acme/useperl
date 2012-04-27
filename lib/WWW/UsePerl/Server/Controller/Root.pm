@@ -88,7 +88,7 @@ A user
 
 =cut
 
-sub user : Regex('^~(\w+)/?$') {
+sub user : Regex('^~([^/]+)/?$') {
     my ( $self, $c ) = @_;
     my ($nickname) = @{ $c->req->captures };
     my $user = $c->model('DB::User')->single( { nickname => $nickname } )
@@ -110,7 +110,7 @@ A user's journal entry
 
 =cut
 
-sub journal : Regex('^~(\w+)/journal/(\d+)$') {
+sub journal : Regex('^~([^/]+)/journal/(\d+)$') {
     my ( $self,     $c )          = @_;
     my ( $nickname, $journal_id ) = @{ $c->req->captures };
     my $user = $c->model('DB::User')->single( { nickname => $nickname } )
