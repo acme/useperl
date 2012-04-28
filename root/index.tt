@@ -22,6 +22,11 @@
 <li><a href="[% c.uri_for('~' _ user.nickname _ '/' ) %]">[% user.nickname | html %]</a></li>
 [% END %]
 </ul>
+<ul class="pager">
+<li>
+<a href="/users/">See more users…</a>
+</li>
+</ul>
 </div> <!-- span4 -->
 
 <div class="span4">
@@ -32,10 +37,9 @@
     %]">[% journal.user.nickname | html %]: [% journal.description | html %]</a></li>
 [% END %]
 </ul>
-
 <ul class="pager">
 <li>
-<a href="/journals/">See more…</a>
+<a href="/journals/">See more journals…</a>
 </li>
 </ul>
 

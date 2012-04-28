@@ -106,6 +106,26 @@ sub user : Regex('^~([^/]+)/?$') {
     $self->_pageset( $c, $journals->pager );
 }
 
+=head2 users
+
+All users
+
+=cut
+
+sub users : Path('users') {
+    my ( $self, $c ) = @_;
+    my $current_page = $c->request->param('page') || 1;
+    my $users = $c->model('DB::User')->search(
+        {},
+        {   page     => $current_page,
+            rows     => 20,
+            order_by => { -desc => 'journal_last_entry_date' }
+        }
+    );
+    $c->stash->{users} = [ $users->all ];
+    $self->_pageset( $c, $users->pager );
+}
+
 =head2 journal entry
 
 A user's journal entry
@@ -135,8 +155,6 @@ All journal entries
 sub journals : Path('journals') {
     my ( $self, $c ) = @_;
     my $current_page = $c->request->param('page') || 1;
-    my $count_journals = $c->model('DB::Journal')->count( {} );
-    $c->stash->{count_journals} = $count_journals;
     my $journals = $c->model('DB::Journal')->search(
         {},
         {   prefetch => 'user',
