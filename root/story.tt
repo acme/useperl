@@ -15,6 +15,18 @@ story.title %]
 <div class="span8">
 <p>[% story.introtext_html %]</p>
 <p>[% story.bodytext_html %]</p>
+
+[% IF comments.size %]
+<hr/>
+[% FOREACH comment IN comments %]
+<h2>[% comment.subject | html %]</h2>
+<h3><a href="[% c.uri_for('~' _ comment.user.nickname _ '/' ) %]">[% comment.user.nickname |
+        html %]</a> on [% comment.date | html %]</h3>
+[% comment.comment %]
+[% END %]
+[% ELSE %]
+[% END %]
+
 </div> <!-- /span8 -->
 
 </div> <!-- row -->

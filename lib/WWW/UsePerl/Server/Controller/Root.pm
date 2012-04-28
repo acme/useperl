@@ -80,6 +80,13 @@ sub story : Regex('^article\.pl') {
         ->search( { sid => $sid }, { prefetch => 'user' } )->single
         || die "Story $sid not found";
     $c->stash->{story} = $story;
+    my $comments = $c->model('DB::Comment')->search(
+        { stoid => $story->stoid },
+        {   prefetch => 'user',
+            order_by => 'date'
+        }
+    );
+    $c->stash->{comments} = [ $comments->all ];
 }
 
 =head2 stories
