@@ -43,9 +43,9 @@ data-target=".nav-collapse">
             <ul class="nav">
               <li><a href="/">Home</a></li>
               <li><a href="#about">About</a></li>
+              <li><a href="/authors/">Authors</a></li>
               <li><a href="/journals/">Journals</a></li>
               <li><a href="/stories/">Stories</a></li>
-              <li><a href="/users/">Users</a></li>
             </ul>
             <p class="navbar-text">All the Perl that's Practical to Extract and Report</p>
           </div><!--/.nav-collapse -->

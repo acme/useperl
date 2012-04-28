@@ -1,8 +1,8 @@
 [%- BLOCK link -%]
   [%- IF page < 2 -%]
-[% c.uri_for('users/') %]
+[% c.uri_for('authors/') %]
   [%- ELSE -%]
-[% c.uri_for('users/', page => page) %]
+[% c.uri_for('authors/', page => page) %]
   [%- END -%]
 [%- END -%]
 
@@ -12,11 +12,11 @@
 
 <div class="span8">
 [% IF pageset.current_page == 1 %]
-<h1>All journals</h1>
-[% page.title = 'use.perl.org users' %]
+<h1>All authors</h1>
+[% page.title = 'use.perl.org authors' %]
 [% ELSE %]
-<h1>All users (page [% pageset.current_page %])</h1>
-[% page.title = 'use.perl.org users (page ' _ pageset.current_page _ ')' %]
+<h1>All authors (page [% pageset.current_page %])</h1>
+[% page.title = 'use.perl.org authors (page ' _ pageset.current_page _ ')' %]
 [% END %]
 
 <ul>

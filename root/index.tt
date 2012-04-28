@@ -21,7 +21,7 @@
 </div> <!-- span4 -->
 
 <div class="span4">
-<h1>[% count_users | html | comma %] users</h1>
+<h1>[% count_users | html | comma %] authors</h1>
 <ul>
 [% FOREACH user IN users %]
 <li><a href="[% c.uri_for('~' _ user.nickname _ '/' ) %]">[% user.nickname | html %]</a></li>
@@ -29,7 +29,7 @@
 </ul>
 <ul class="pager">
 <li>
-<a href="/users/">See more users…</a>
+<a href="/users/">See more authors…</a>
 </li>
 </ul>
 </div> <!-- span4 -->

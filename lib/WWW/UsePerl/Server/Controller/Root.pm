@@ -102,13 +102,13 @@ sub stories : Path('stories') {
     $self->_pageset( $c, $stories->pager );
 }
 
-=head2 user
+=head2 author
 
-A user
+An author
 
 =cut
 
-sub user : Regex('^~([^/]+)/?$') {
+sub author : Regex('^~([^/]+)/?$') {
     my ( $self, $c ) = @_;
     my ($nickname) = @{ $c->req->captures };
     my $current_page = $c->request->param('page') || 1;
@@ -126,13 +126,13 @@ sub user : Regex('^~([^/]+)/?$') {
     $self->_pageset( $c, $journals->pager );
 }
 
-=head2 users
+=head2 authors
 
-All users
+All authors
 
 =cut
 
-sub users : Path('users') {
+sub authors : Path('authors') {
     my ( $self, $c ) = @_;
     my $current_page = $c->request->param('page') || 1;
     my $users = $c->model('DB::User')->search(
