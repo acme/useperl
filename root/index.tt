@@ -7,7 +7,7 @@
 <div class="row">
 
 <div class="span4">
-<h2>[% count_stories | html | comma %] stories</h2>
+<h1>[% count_stories | html | comma %] stories</h1>
 <ul>
 [% FOREACH story IN stories %]
 <li><a href="[% c.uri_for('article.pl', { sid => story.sid}) %]">[% story.title | html %]</a></li>
@@ -16,7 +16,7 @@
 </div> <!-- span4 -->
 
 <div class="span4">
-<h2>[% count_users | html | comma %] users</h2>
+<h1>[% count_users | html | comma %] users</h1>
 <ul>
 [% FOREACH user IN users %]
 <li><a href="[% c.uri_for('~' _ user.nickname _ '/' ) %]">[% user.nickname | html %]</a></li>
@@ -25,7 +25,7 @@
 </div> <!-- span4 -->
 
 <div class="span4">
-<h2>[% count_journals | html | comma %] journals</h2>
+<h1>[% count_journals | html | comma %] journals</h1>
 <ul>
 [% FOREACH journal IN journals %]
 <li><a href="[% c.uri_for('~' _ journal.user.nickname _ '/journal/' _ journal.id )

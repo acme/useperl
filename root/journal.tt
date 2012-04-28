@@ -6,9 +6,9 @@ journal.description %]
 <div class="row">
 
 <div class="span4">
-<h2>[% journal.description | html  %]</h2>
-<h3><a href="[% c.uri_for('~' _ user.nickname _ '/' ) %]">[% user.nickname |
-        html %]</a> on [% journal.date | html %]</h3>
+<h1>[% journal.description | html  %]</h1>
+<h2><a href="[% c.uri_for('~' _ user.nickname _ '/' ) %]">[% user.nickname |
+        html %]</a> on [% journal.date | html %]</h2>
 </div> <!-- /span4 -->
 
 
