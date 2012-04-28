@@ -91,17 +91,27 @@ A user
 sub user : Regex('^~([^/]+)/?$') {
     my ( $self, $c ) = @_;
     my ($nickname) = @{ $c->req->captures };
+    my $current_page = $c->request->param('page') || 1;
     my $user = $c->model('DB::User')->single( { nickname => $nickname } )
         || die "No user found for $nickname";
     $c->stash->{user} = $user;
     my $journals = $c->model('DB::Journal')->search(
         { uid => $user->uid },
-        {   page     => 1,
+        {   page     => $current_page,
             rows     => 20,
             order_by => { -desc => 'date' },
         }
     );
     $c->stash->{journals} = [ $journals->all ];
+    my $pager = $journals->pager;
+    $c->stash->{pageset} = Data::Pageset->new(
+        {   'total_entries'    => $pager->total_entries,
+            'entries_per_page' => $pager->entries_per_page,
+            'current_page'     => $current_page,
+            'pages_per_set'    => 5,
+            'mode'             => 'slide',
+        }
+    );
 }
 
 =head2 journal entry

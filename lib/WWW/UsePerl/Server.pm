@@ -3,6 +3,7 @@ use Moose;
 use namespace::autoclean;
 
 use Catalyst::Runtime 5.80;
+use Data::Pageset;
 use DateTime::Format::MySQL;
 use Template::Plugin::Comma;
 
