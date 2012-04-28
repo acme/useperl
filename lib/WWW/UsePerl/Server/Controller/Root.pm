@@ -82,6 +82,26 @@ sub story : Regex('^article\.pl') {
     $c->stash->{story} = $story;
 }
 
+=head2 stories
+
+All stories
+
+=cut
+
+sub stories : Path('stories') {
+    my ( $self, $c ) = @_;
+    my $current_page = $c->request->param('page') || 1;
+    my $stories = $c->model('DB::Story')->search(
+        { -not => { tid => 41 } },
+        {   page     => $current_page,
+            rows     => 20,
+            order_by => { -desc => 'time' }
+        }
+    );
+    $c->stash->{stories} = [ $stories->all ];
+    $self->_pageset( $c, $stories->pager );
+}
+
 =head2 user
 
 A user

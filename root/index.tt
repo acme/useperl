@@ -13,6 +13,11 @@
 <li><a href="[% c.uri_for('article.pl', { sid => story.sid}) %]">[% story.title | html %]</a></li>
 [% END %]
 </ul>
+<ul class="pager">
+<li>
+<a href="/stories/">See more stories…</a>
+</li>
+</ul>
 </div> <!-- span4 -->
 
 <div class="span4">
