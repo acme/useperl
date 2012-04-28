@@ -32,6 +32,13 @@
     %]">[% journal.user.nickname | html %]: [% journal.description | html %]</a></li>
 [% END %]
 </ul>
+
+<ul class="pager">
+<li>
+<a href="/journals/">See more…</a>
+</li>
+</ul>
+
 </div> <!-- span4 -->
 
 </div> <!-- row -->

@@ -103,15 +103,7 @@ sub user : Regex('^~([^/]+)/?$') {
         }
     );
     $c->stash->{journals} = [ $journals->all ];
-    my $pager = $journals->pager;
-    $c->stash->{pageset} = Data::Pageset->new(
-        {   'total_entries'    => $pager->total_entries,
-            'entries_per_page' => $pager->entries_per_page,
-            'current_page'     => $current_page,
-            'pages_per_set'    => 5,
-            'mode'             => 'slide',
-        }
-    );
+    $self->_pageset( $c, $journals->pager );
 }
 
 =head2 journal entry
@@ -134,6 +126,29 @@ sub journal : Regex('^~([^/]+)/journal/(\d+)$') {
     $c->stash->{journal} = $journal;
 }
 
+=head2 journal entries
+
+All journal entries
+
+=cut
+
+sub journals : Path('journals') {
+    my ( $self, $c ) = @_;
+    my $current_page = $c->request->param('page') || 1;
+    my $count_journals = $c->model('DB::Journal')->count( {} );
+    $c->stash->{count_journals} = $count_journals;
+    my $journals = $c->model('DB::Journal')->search(
+        {},
+        {   prefetch => 'user',
+            page     => $current_page,
+            rows     => 20,
+            order_by => { -desc => 'date' },
+        }
+    );
+    $c->stash->{journals} = [ $journals->all ];
+    $self->_pageset( $c, $journals->pager );
+}
+
 =head2 default
 
 Standard 404 error page
@@ -153,6 +168,18 @@ Attempt to render a view, if needed.
 =cut
 
 sub end : ActionClass('RenderView') {
+}
+
+sub _pageset {
+    my ( $self, $c, $pager ) = @_;
+    $c->stash->{pageset} = Data::Pageset->new(
+        {   'total_entries'    => $pager->total_entries,
+            'entries_per_page' => $pager->entries_per_page,
+            'current_page'     => $pager->current_page,
+            'pages_per_set'    => 5,
+            'mode'             => 'slide',
+        }
+    );
 }
 
 =head1 AUTHOR
