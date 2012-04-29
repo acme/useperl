@@ -51,7 +51,7 @@ __PACKAGE__->setup();
 
 =head1 NAME
 
-WWW::UsePerl::Server - Catalyst based application
+WWW::UsePerl::Server - Serve use.perl.org content
 
 =head1 SYNOPSIS
 
@@ -59,7 +59,19 @@ WWW::UsePerl::Server - Catalyst based application
 
 =head1 DESCRIPTION
 
-[enter your description here]
+use.perl.org was a Perl-specific blogging website created by Chris Nandor and
+hosted at Geeknet. It was up from early 2001 until late 2010. This is project
+along the lines of Archive Team (http://www.archiveteam.org) to save historical
+Perl websites and keep the content going. Using this module you can host your
+own use.perl.org mirror.
+
+You'll need a MySQL server. Update www_useperl_server.conf with the database
+connection details. Then import the (26MB compressed, 94MB uncompressed)
+database dump from:
+
+    https://s3.amazonaws.com/useperl/useperl-2012-04-29.sql.bz2
+
+And run script/www_useperl_server_server.pl.
 
 =head1 SEE ALSO
 
@@ -67,7 +79,7 @@ L<WWW::UsePerl::Server::Controller::Root>, L<Catalyst>
 
 =head1 AUTHOR
 
-Leon Brocard,,,
+Leon Brocard, acme@astray.com
 
 =head1 LICENSE
 
