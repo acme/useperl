@@ -192,6 +192,7 @@ sub article_html {
     $article =~ s{\r?\n\r?\n}{<br/><br/>}g unless $article =~ /<p>/;
     $article =~ s{<ecode>}{<pre>}g;
     $article =~ s{</ecode>}{</pre>}g;
+    $article =~ s{<URL:(.+?)/>}{<a href="$1">$1</a>}g;
     return $article;
 }
 
