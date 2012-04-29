@@ -51,53 +51,6 @@ __PACKAGE__->table("journals");
   is_nullable: 0
   size: 80
 
-=head2 posttype
-
-  data_type: 'tinyint'
-  default_value: 2
-  is_nullable: 0
-
-=head2 discussion
-
-  data_type: 'mediumint'
-  extra: {unsigned => 1}
-  is_nullable: 1
-
-=head2 tid
-
-  data_type: 'smallint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 last_update
-
-  data_type: 'timestamp'
-  datetime_undef_if_invalid: 1
-  default_value: current_timestamp
-  is_nullable: 0
-
-=head2 promotetype
-
-  data_type: 'enum'
-  default_value: 'publish'
-  extra: {list => ["publicize","publish","post"]}
-  is_nullable: 0
-
-=head2 srcid_32
-
-  data_type: 'bigint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 srcid_24
-
-  data_type: 'bigint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
 =head2 article
 
   data_type: 'text'
@@ -134,45 +87,6 @@ __PACKAGE__->add_columns(
   },
   "description",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 80 },
-  "posttype",
-  { data_type => "tinyint", default_value => 2, is_nullable => 0 },
-  "discussion",
-  { data_type => "mediumint", extra => { unsigned => 1 }, is_nullable => 1 },
-  "tid",
-  {
-    data_type => "smallint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "last_update",
-  {
-    data_type => "timestamp",
-    datetime_undef_if_invalid => 1,
-    default_value => \"current_timestamp",
-    is_nullable => 0,
-  },
-  "promotetype",
-  {
-    data_type => "enum",
-    default_value => "publish",
-    extra => { list => ["publicize", "publish", "post"] },
-    is_nullable => 0,
-  },
-  "srcid_32",
-  {
-    data_type => "bigint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "srcid_24",
-  {
-    data_type => "bigint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
   "article",
   { data_type => "text", is_nullable => 0 },
   "introtext",
@@ -181,8 +95,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("id");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-25 20:55:29
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:69IdsQzoRgVuahqZ0Zs7xA
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-29 15:03:51
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:AWHWdMi7LwAZWktBKbOUeg
 
 __PACKAGE__->belongs_to('user', 'WWW::UsePerl::Server::Schema::Result::User', 'uid');
 

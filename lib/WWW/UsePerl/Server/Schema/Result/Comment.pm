@@ -51,27 +51,6 @@ __PACKAGE__->table("comments");
   default_value: '0000-00-00 00:00:00'
   is_nullable: 0
 
-=head2 last_update
-
-  data_type: 'timestamp'
-  datetime_undef_if_invalid: 1
-  default_value: current_timestamp
-  is_nullable: 0
-
-=head2 ipid
-
-  data_type: 'varchar'
-  default_value: (empty string)
-  is_nullable: 0
-  size: 32
-
-=head2 subnetid
-
-  data_type: 'varchar'
-  default_value: (empty string)
-  is_nullable: 0
-  size: 32
-
 =head2 subject
 
   data_type: 'varchar'
@@ -79,108 +58,9 @@ __PACKAGE__->table("comments");
   is_nullable: 0
   size: 50
 
-=head2 subject_orig
-
-  data_type: 'enum'
-  default_value: 'yes'
-  extra: {list => ["no","yes"]}
-  is_nullable: 0
-
 =head2 uid
 
   data_type: 'mediumint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 points
-
-  data_type: 'tinyint'
-  default_value: 0
-  is_nullable: 0
-
-=head2 pointsorig
-
-  data_type: 'tinyint'
-  default_value: 0
-  is_nullable: 0
-
-=head2 pointsmax
-
-  data_type: 'tinyint'
-  default_value: 0
-  is_nullable: 0
-
-=head2 lastmod
-
-  data_type: 'mediumint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 reason
-
-  data_type: 'tinyint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 signature
-
-  data_type: 'varchar'
-  default_value: (empty string)
-  is_nullable: 0
-  size: 32
-
-=head2 karma_bonus
-
-  data_type: 'enum'
-  default_value: 'no'
-  extra: {list => ["yes","no"]}
-  is_nullable: 0
-
-=head2 subscriber_bonus
-
-  data_type: 'enum'
-  default_value: 'no'
-  extra: {list => ["no","yes"]}
-  is_nullable: 0
-
-=head2 len
-
-  data_type: 'smallint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 karma
-
-  data_type: 'smallint'
-  default_value: 0
-  is_nullable: 0
-
-=head2 karma_abs
-
-  data_type: 'smallint'
-  default_value: 0
-  extra: {unsigned => 1}
-  is_nullable: 0
-
-=head2 tweak_orig
-
-  data_type: 'tinyint'
-  default_value: 0
-  is_nullable: 0
-
-=head2 tweak
-
-  data_type: 'tinyint'
-  default_value: 0
-  is_nullable: 0
-
-=head2 badge_id
-
-  data_type: 'tinyint'
   default_value: 0
   extra: {unsigned => 1}
   is_nullable: 0
@@ -246,92 +126,11 @@ __PACKAGE__->add_columns(
     default_value => "0000-00-00 00:00:00",
     is_nullable => 0,
   },
-  "last_update",
-  {
-    data_type => "timestamp",
-    datetime_undef_if_invalid => 1,
-    default_value => \"current_timestamp",
-    is_nullable => 0,
-  },
-  "ipid",
-  { data_type => "varchar", default_value => "", is_nullable => 0, size => 32 },
-  "subnetid",
-  { data_type => "varchar", default_value => "", is_nullable => 0, size => 32 },
   "subject",
   { data_type => "varchar", default_value => "", is_nullable => 0, size => 50 },
-  "subject_orig",
-  {
-    data_type => "enum",
-    default_value => "yes",
-    extra => { list => ["no", "yes"] },
-    is_nullable => 0,
-  },
   "uid",
   {
     data_type => "mediumint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "points",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "pointsorig",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "pointsmax",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "lastmod",
-  {
-    data_type => "mediumint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "reason",
-  {
-    data_type => "tinyint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "signature",
-  { data_type => "varchar", default_value => "", is_nullable => 0, size => 32 },
-  "karma_bonus",
-  {
-    data_type => "enum",
-    default_value => "no",
-    extra => { list => ["yes", "no"] },
-    is_nullable => 0,
-  },
-  "subscriber_bonus",
-  {
-    data_type => "enum",
-    default_value => "no",
-    extra => { list => ["no", "yes"] },
-    is_nullable => 0,
-  },
-  "len",
-  {
-    data_type => "smallint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "karma",
-  { data_type => "smallint", default_value => 0, is_nullable => 0 },
-  "karma_abs",
-  {
-    data_type => "smallint",
-    default_value => 0,
-    extra => { unsigned => 1 },
-    is_nullable => 0,
-  },
-  "tweak_orig",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "tweak",
-  { data_type => "tinyint", default_value => 0, is_nullable => 0 },
-  "badge_id",
-  {
-    data_type => "tinyint",
     default_value => 0,
     extra => { unsigned => 1 },
     is_nullable => 0,
@@ -355,8 +154,8 @@ __PACKAGE__->add_columns(
 __PACKAGE__->set_primary_key("cid");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-29 09:30:36
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:M3cwAPnTQXzKqYIY1ji6ig
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-29 15:09:50
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:P7tuoNvK4Fns8kQCrTrZXA
 
 __PACKAGE__->belongs_to('user', 'WWW::UsePerl::Server::Schema::Result::User', 'uid');
 

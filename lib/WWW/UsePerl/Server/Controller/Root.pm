@@ -30,11 +30,10 @@ sub index : Path : Args(0) {
     my ( $self, $c ) = @_;
     my $db_model = $c->model('DB');
 
-    my $count_stories
-        = $c->model('DB::Story')->count( { -not => { tid => 41 } } );
+    my $count_stories = $c->model('DB::Story')->count( {} );
     $c->stash->{count_stories} = $count_stories;
     my @stories = $c->model('DB::Story')->search(
-        { -not => { tid => 41 } },
+        {},
         {   page     => 1,
             rows     => 20,
             order_by => { -desc => 'time' }
@@ -99,7 +98,7 @@ sub stories : Path('stories') {
     my ( $self, $c ) = @_;
     my $current_page = $c->request->param('page') || 1;
     my $stories = $c->model('DB::Story')->search(
-        { -not => { tid => 41 } },
+        {},
         {   page     => $current_page,
             rows     => 20,
             order_by => { -desc => 'time' }
