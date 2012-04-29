@@ -228,7 +228,7 @@ sub _pageset {
         {   'total_entries'    => $pager->total_entries,
             'entries_per_page' => $pager->entries_per_page,
             'current_page'     => $pager->current_page,
-            'pages_per_set'    => 5,
+            'pages_per_set'    => 10,
             'mode'             => 'slide',
         }
     );
