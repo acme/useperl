@@ -14,6 +14,9 @@ journal.description %]
 
 <div class="span8">
 <p>[% journal.article_html %]</p>
+
+[% INCLUDE lib/comments.tt %]
+
 </div> <!-- /span8 -->
 
 </div> <!-- row -->

@@ -202,6 +202,19 @@ __PACKAGE__->table("comments");
   extra: {unsigned => 1}
   is_nullable: 1
 
+=head2 sequence
+
+  accessor: 'column_sequence'
+  data_type: 'mediumint'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
+=head2 level
+
+  data_type: 'mediumint'
+  extra: {unsigned => 1}
+  is_nullable: 1
+
 =cut
 
 __PACKAGE__->add_columns(
@@ -329,14 +342,32 @@ __PACKAGE__->add_columns(
   { data_type => "mediumint", extra => { unsigned => 1 }, is_nullable => 1 },
   "stoid",
   { data_type => "mediumint", extra => { unsigned => 1 }, is_nullable => 1 },
+  "sequence",
+  {
+    accessor    => "column_sequence",
+    data_type   => "mediumint",
+    extra       => { unsigned => 1 },
+    is_nullable => 1,
+  },
+  "level",
+  { data_type => "mediumint", extra => { unsigned => 1 }, is_nullable => 1 },
 );
 __PACKAGE__->set_primary_key("cid");
 
 
-# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-28 20:04:50
-# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:njvFom39mRG+XSmyox6TRw
+# Created by DBIx::Class::Schema::Loader v0.07010 @ 2012-04-29 09:30:36
+# DO NOT MODIFY THIS OR ANYTHING ABOVE! md5sum:M3cwAPnTQXzKqYIY1ji6ig
 
 __PACKAGE__->belongs_to('user', 'WWW::UsePerl::Server::Schema::Result::User', 'uid');
+
+sub comment_html {
+    my $self = shift;
+    my $comment = $self->comment;
+    $comment =~ s{\r?\n\r?\n}{<br/><br/>}g unless $comment =~ /<p>/;
+    $comment =~ s{<ecode>}{<pre>}g;
+    $comment =~ s{</ecode>}{</pre>}g;
+    return $comment;
+}
 
 # You can replace this text with custom code or comments, and it will be preserved on regeneration
 __PACKAGE__->meta->make_immutable;

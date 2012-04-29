@@ -83,7 +83,7 @@ sub story : Regex('^article\.pl') {
     my $comments = $c->model('DB::Comment')->search(
         { stoid => $story->stoid },
         {   prefetch => 'user',
-            order_by => 'date'
+            order_by => 'sequence'
         }
     );
     $c->stash->{comments} = [ $comments->all ];
@@ -171,6 +171,13 @@ sub journal : Regex('^~([^/]+)/journal/(\d+)$') {
         }
     ) || die "Journal $journal_id not found for user $nickname";
     $c->stash->{journal} = $journal;
+    my $comments = $c->model('DB::Comment')->search(
+        { journal_id => $journal_id },
+        {   prefetch => 'user',
+            order_by => 'sequence'
+        }
+    );
+    $c->stash->{comments} = [ $comments->all ];
 }
 
 =head2 journal entries
