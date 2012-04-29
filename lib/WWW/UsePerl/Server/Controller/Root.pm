@@ -65,6 +65,16 @@ sub index : Path : Args(0) {
     $c->stash->{journals} = \@journals;
 }
 
+=head2 about
+
+About
+
+=cut
+
+sub about : Path('about') {
+    my ( $self, $c ) = @_;
+}
+
 =head2 story entry
 
 A story entry
